@@ -53,10 +53,10 @@ app.delete('/todos/:id', function (req, res) {
 
 	if (!matchedTodo) {
 		res.status(404).send({"error": "no todo found with that id"});
+	} else {
+		todos = _.without(todos, matchedTodo);
+		res.json(matchedTodo);
 	}
-
-	todos = _.without(todos, matchedTodo);
-	res.json(matchedTodo);
 });
 
 app.listen(PORT, function () {
